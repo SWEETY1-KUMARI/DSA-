@@ -1,0 +1,65 @@
+// insertion sort
+// In this sorting firstly we compare first two element and then if first<second move ahead if not then swap in this way and you have to check 
+from right to leftmost array this condition in every iteration.
+
+--> This algorithm is one of the simplest algorithms with a simple implementation
+--> Basically, Insertion sort is efficient for small data values
+--> Insertion sort is adaptive in nature, i.e. it is appropriate for data sets that are already partially sorted.
+--> The Insertion Sort algorithm follows an incremental approach.
+-->  Insertion sort is an in-place sorting algorithm.
+-->  Insertion sort is a stable sorting algorithm.
+-->  Insertion sort is used when number of elements is small. It can also be useful when the input array is almost sorted, 
+and only a few elements are misplaced in a complete big array.
+
+-->  Insertion sort is suitable for small datasets, partially sorted data, online algorithms, sorting linked lists, algorithm 
+debugging, human intervention, teaching sorting concepts, and benchmarking simpler sorting algorithms.
+
+The worst-case time complexity of the Insertion sort is O(N^2)
+The average case time complexity of the Insertion sort is O(N^2)
+The time complexity of the best case is O(N).
+
+
+//code
+void insertionSort(int arr[], int n)
+    {
+        //code here
+       
+        for(int i=1;i<n;i++)
+        {
+            int temp=arr[i];
+            int j=i-1;
+            while(j>=0 && temp<arr[j])
+            {
+               arr[j+1]=arr[j];
+                j--;
+            }
+            arr[j+1]=temp;
+        }
+      
+    }
+
+// recursive code
+         void insert(int arr[],int i)
+    {
+          int temp=arr[i];
+            int j=i-1;
+            while(j>=0 && temp<arr[j])
+            {
+               arr[j+1]=arr[j];
+                j--;
+            }
+            arr[j+1]=temp;
+    }
+    
+     public:
+    //Function to sort the array using insertion sort algorithm.
+  
+    void insertionSort(int arr[], int n)
+    {
+        //code here
+       if(n==1 ) return;
+      
+       insertionSort(arr,n-1);
+       insert(arr,n-1);
+      
+    }
