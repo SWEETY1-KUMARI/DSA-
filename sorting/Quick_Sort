@@ -1,0 +1,153 @@
+//quick sort
+QuickSort is a sorting algorithm based on the Divide and Conquer algorithm that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array.
+
+The key process in quickSort is a partition(). The target of partitions is to place the pivot (any element can be chosen to be a pivot) at its correct position in the sorted array and put all smaller elements to the left of the pivot, and all greater elements to the right of the pivot.
+
+Partition is done recursively on each side of the pivot after the pivot is placed in its correct position and this finally sorts the array.
+
+
+Time Complexity:
+
+Best Case:  Ω (N log (N))
+Average Case:  θ ( N log (N))
+Worst Case: O(N2)
+
+Best Case:-
+The best-case scenario for quicksort occur when the pivot chosen at the each step divides the array into roughly equal halves.
+
+In this case, the algorithm will make balanced partitions, leading to efficient Sorting.
+
+The Best case time complexity of quicksort is O(n log n).
+
+2. Average Case:-
+
+Quicksort’s average-case performance is usually very good in practice, making it one of the fastest sorting Algorithm.
+
+The Average Case Time-complexity is also O(n log n).
+
+3. worst Case:-
+
+The worst-case Scenario for Quicksort occur when the pivot at each step consistently results in highly unbalanced partitions.
+
+When the array is already sorted and the pivot is always chosen as the smallest or largest element.
+
+
+Advantages of Quick Sort:
+It is a divide-and-conquer algorithm that makes it easier to solve problems.
+It is efficient on large data sets.
+It has a low overhead, as it only requires a small amount of memory to function.
+Disadvantages of Quick Sort:
+It has a worst-case time complexity of O(N2), which occurs when the pivot is chosen poorly.
+It is not a good choice for small data sets.
+It is not a stable sort, meaning that if two elements have the same key, their relative order will not be preserved in the sorted output in case of quick sort, because here we are swapping elements according to the pivot’s position (without considering their original positions).
+
+
+Below given the uses and real-time application of Quicksort:
+
+--> Commercial Computing is used in various government and private organizations for the purpose of sorting various data like sorting files by name/date/price, sorting of students by their roll no., sorting of account profile by given id, etc.
+--> The sorting algorithm is used for information searching and as Quicksort is the fastest algorithm so it is widely used as a better way of searching.
+--> It is used everywhere where a stable sort is not needed.
+--> Quicksort is a cache-friendly algorithm as it has a good locality of reference when used for arrays.
+--> It is tail -recursive and hence all the call optimization can be done.
+--> It is an in-place sort that does not require any extra storage memory.
+--> It is used in operational research and event-driven simulation.
+--> Numerical computations and in scientific research, for accuracy in calculations most of the efficiently developed algorithm uses priority queue and quick sort is used for sorting.
+--> Variants of Quicksort are used to separate the Kth smallest or largest elements.
+--> It is used to implement primitive type methods.
+
+
+// code considering first element as pivot
+ void quickSort(int arr[], int low, int high)
+    {
+        // code here
+        if(low<high)
+        {
+            int pindex=partition(arr,low,high);
+            quickSort(arr,low,pindex-1);
+            quickSort(arr,pindex+1,high);
+        }
+    }
+    
+    public:
+    int partition (int arr[], int low, int high)
+    {
+       // Your code here
+       int pivot=arr[low];
+       int i=low;
+       int j=high;
+       while(i<j)
+       {
+           while(arr[i]<=pivot && i<=high-1)i++;
+           while(arr[j]>pivot &&j>=low+1)j--;
+           if(i<j)swap(arr[i],arr[j]);
+           
+       }
+       swap(arr[low],arr[j]);
+       return j;
+       
+    }
+
+// Iterative method for quick sort
+
+// CPP code for recursive function of Quicksort
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Function to swap numbers
+void swap(int* a, int* b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+/* This function takes last element as pivot,
+places the pivot element at its correct
+position in sorted array, and places
+all smaller (smaller than pivot) to left
+of pivot and all greater elements to
+right of pivot */
+int partition(int arr[], int l, int h)
+{
+	int x = arr[h];
+	int i = (l - 1);
+
+	for (int j = l; j <= h - 1; j++) {
+		if (arr[j] <= x) {
+			i++;
+			swap(&arr[i], &arr[j]);
+		}
+	}
+	swap(&arr[i + 1], &arr[h]);
+	return (i + 1);
+}
+
+/* A[] --> Array to be sorted,
+l --> Starting index,
+h --> Ending index */
+void quickSort(int A[], int l, int h)
+{
+	if (l < h) {
+		/* Partitioning index */
+		int p = partition(A, l, h);
+		quickSort(A, l, p - 1);
+		quickSort(A, p + 1, h);
+	}
+}
+
+// Driver code
+int main()
+{
+
+	int n = 5;
+	int arr[n] = { 4, 2, 6, 9, 2 };
+
+	quickSort(arr, 0, n - 1);
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+
+	return 0;
+}
